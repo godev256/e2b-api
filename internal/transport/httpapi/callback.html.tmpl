@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Signed in</title>
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; max-width: 52rem; margin: 3rem auto; padding: 0 1rem; color: #1b1b1b; }
+    h1 { font-size: 1.4rem; }
+    pre { background: #f4f4f5; padding: 1rem; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
+    .muted { color: #666; }
+  </style>
+</head>
+<body>
+  <h1>Signed in as {{ if .User.Email }}{{ .User.Email }}{{ else }}{{ .User.ID }}{{ end }}</h1>
+  <p class="muted">Your account was created on first login. The token below expires in about {{ .ExpiresIn }} seconds.</p>
+  <h2>Access token</h2>
+  <pre>{{ .AccessToken }}</pre>
+  <h2>Try it</h2>
+  <pre>curl -s localhost:8080/v1/projects -H "Authorization: Bearer {{ .AccessToken }}"</pre>
+</body>
+</html>
